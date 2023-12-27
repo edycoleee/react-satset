@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { auth_url, clientID, clientSecret } from '../util';
 import axios from 'axios';
+import { SatsetContext } from './Context';
 
 function GetToken() {
-
-const [tokenDt, setTokenDt] = useState("")
-const [Loading, setLoading] = useState(false)
+    const { tokenDt, setTokenDt } = useContext(SatsetContext);
+    const [Loading, setLoading] = useState(false)
 
     const getToken = () => {
         setLoading(true)
-        console.log("GET TOKEN");
+        console.log("GET TOKEN",auth_url);
 
         let formData = new FormData();
 
@@ -25,7 +25,7 @@ const [Loading, setLoading] = useState(false)
 
         axios({
             // Endpoint to send files
-            url: auth_url,
+            url: "/oauth2/accesstoken?grant_type=client_credentials",
             method: "POST",
             headers: {
                 // Add any auth token here
@@ -92,14 +92,14 @@ const [Loading, setLoading] = useState(false)
                         disabled />
                 </div>
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled'
-                onClick={() => getToken()}
+                    onClick={() => getToken()}
                 >GET TOKEN</button>
-                {Loading===true ? "LOADING..." : (
-                <div className="m-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-                        TOKEN : {tokenDt==="" ? "BELUM ADA TOKEN" : tokenDt}
-                    </label>
-                </div>
+                {Loading === true ? "LOADING..." : (
+                    <div className="m-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                            TOKEN : {tokenDt === "" ? "BELUM ADA TOKEN" : tokenDt}
+                        </label>
+                    </div>
                 )}
             </div>
         </div>

@@ -1,11 +1,45 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { base_url } from '../util';
+import { SatsetContext } from './Context';
+import axios from 'axios';
 
 function GetIHS() {
+    const { tokenDt } = useContext(SatsetContext);
     const [Loading, setLoading] = useState(false)
+    const [nik, setNik] = useState("3374060709780006")
     const [numberIHS, setNumberIHS] = useState("")
-
     const getPatient = () => {
-        console.log("GET IHS");
+        setLoading(true)
+        console.log("GET IHS",nik);
+
+        let dataKirim = ""
+        axios({
+            // Endpoint to send files
+            url: base_url + nik,
+            method: "GET",
+            headers: {
+                // Add any auth token here
+                //authorization: "your token comes here",
+                'Content-Type': 'application/x-www-form-urlencoded', 
+                'Authorization': 'Bearer'+""+{tokenDt}
+            },
+
+            // Attaching the form data
+            data: dataKirim,
+        })
+            // Handle the response from backend here
+            .then((res) => {
+                console.log("RESPONSE :", res.data);
+                //console.log("RESPONSE NIK:", res.data.access_token);
+                //setNumberIHS(res.data.access_token)
+                setLoading(false)
+            })
+
+            // Catch errors if any
+            .catch((err) => {
+                console.log("ERROR :", err);
+                setLoading(false)
+            });
 
     }
     return (
@@ -22,6 +56,8 @@ function GetIHS() {
                     className="shadow appearance-none border rounded w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
                     type="text"
+                    value={nik}
+                    onChange={(e)=>setNik(e.target.value)}
                      />
             </div>
             <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled'
