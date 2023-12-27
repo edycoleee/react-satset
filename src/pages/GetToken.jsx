@@ -9,7 +9,7 @@ function GetToken() {
 
     const getToken = () => {
         setLoading(true)
-        console.log("GET TOKEN",auth_url);
+        console.log("GET TOKEN", auth_url);
 
         let formData = new FormData();
 
@@ -25,7 +25,7 @@ function GetToken() {
 
         axios({
             // Endpoint to send files
-            url: "/oauth2/accesstoken?grant_type=client_credentials",
+            url: "/api/oauth2/v1/accesstoken?grant_type=client_credentials",
             method: "POST",
             headers: {
                 // Add any auth token here

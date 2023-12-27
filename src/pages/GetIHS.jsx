@@ -8,30 +8,33 @@ function GetIHS() {
     const [Loading, setLoading] = useState(false)
     const [nik, setNik] = useState("3374060709780006")
     const [numberIHS, setNumberIHS] = useState("")
+
+
+
     const getPatient = () => {
         setLoading(true)
-        console.log("GET IHS",nik);
+        console.log("GET IHS", nik);
+        // Endpoint to send files P01808167023
 
-        let dataKirim = ""
         axios({
             // Endpoint to send files
-            url: base_url + nik,
+            url: "/api/fhir-r4/v1/Patient?identifier=https://fhir.kemkes.go.id/id/nik|" + nik,
             method: "GET",
             headers: {
                 // Add any auth token here
                 //authorization: "your token comes here",
-                'Content-Type': 'application/x-www-form-urlencoded', 
-                'Authorization': 'Bearer'+""+{tokenDt}
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + tokenDt
+
             },
 
             // Attaching the form data
-            data: dataKirim,
+
         })
             // Handle the response from backend here
             .then((res) => {
                 console.log("RESPONSE :", res.data);
-                //console.log("RESPONSE NIK:", res.data.access_token);
-                //setNumberIHS(res.data.access_token)
+                setNumberIHS(res.data)
                 setLoading(false)
             })
 
@@ -40,7 +43,6 @@ function GetIHS() {
                 console.log("ERROR :", err);
                 setLoading(false)
             });
-
     }
     return (
 
@@ -57,19 +59,25 @@ function GetIHS() {
                     id="username"
                     type="text"
                     value={nik}
-                    onChange={(e)=>setNik(e.target.value)}
-                     />
+                    onChange={(e) => setNik(e.target.value)}
+                />
             </div>
             <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled'
                 onClick={() => getPatient()}
-                >GET IHS </button>
-                {Loading===true ? "LOADING..." : (
+            >GET IHS </button>
+            {Loading === true ? "LOADING..." : (
                 <div className="m-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-                        IHS Number : {numberIHS==="" ? "BELUM ADA IHS" : numberIHS}
+                        IHS RESPONSE : {numberIHS === "" ? "BELUM ADA IHS" : JSON.stringify(numberIHS)}
+                    </label>
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                        IHS NUMBER : {numberIHS === "" ? "BELUM ADA IHS" : (numberIHS.entry[0].resource.id)}
+                    </label>
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                        IHS TEXT : {numberIHS === "" ? "BELUM ADA IHS" : (numberIHS.entry[0].resource.name[0].text)}
                     </label>
                 </div>
-                )}
+            )}
             <div />
         </div>
     )

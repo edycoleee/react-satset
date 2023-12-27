@@ -4,9 +4,16 @@ import react from '@vitejs/plugin-react-swc'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
+    host: true,
     proxy: {
-      "/oauth2": "https://api-satusehat.kemkes.go.id/oauth2/v1/",
-    }  
-  } ,
+      '/api': {
+        target: 'https://api-satusehat.kemkes.go.id/',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      }
+    }
+  },
   plugins: [react()],
 })
