@@ -45,11 +45,10 @@ function GetIHS() {
             });
     }
     return (
-
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 m-2">
-            <h4>
+            <div className="font-bold text-xl mb-2">
                 Get Patient
-            </h4>
+            </div>
             <div className="m-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     NIK :
