@@ -6,8 +6,9 @@ function PostLocation() {
   const { tokenDt } = useContext(SatsetContext);
   const [Loading, setLoading] = useState(false)
   const [resLocation, setResLocation] = useState("")
-  const [nameLocation, setNameLocation] = useState("")
-  const [LocationID, setLocationID] = useState("c63ae084-0449-4f7b-b4c4-b1e4341c2e53")
+  const [nameLocation, setNameLocation] = useState("Ruang Klinik 1")
+  const [descLocation, setDescLocation] = useState("Ruang 1, Poliklinik Anak, Lantai 1, Gedung Poliklinik")
+  const [LocationID, setLocationID] = useState("")
 
   const DataLocation = {
     "resourceType": "Location",
@@ -18,8 +19,8 @@ function PostLocation() {
       }
     ],
     "status": "active",
-    "name": "Ruang Klinik 1",
-    "description": "Ruang 1, Poliklinik Anak, Lantai 1, Gedung Poliklinik",
+    "name": nameLocation,
+    "description": descLocation,
     "mode": "instance",
     "telecom": [
       {
@@ -138,8 +139,18 @@ function PostLocation() {
           className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="username"
           type="text"
-          value={LocationID}
-          onChange={(e) => setLocationID(e.target.value)}
+          value={nameLocation}
+          onChange={(e) => setNameLocation(e.target.value)}
+        />
+        <label className="block text-gray-700 text-sm font-bold mt-2" htmlFor="username">
+          DESKRIPSI LOCATION :
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username"
+          type="text"
+          value={descLocation}
+          onChange={(e) => setDescLocation(e.target.value)}
         />
       </div>
       <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled'

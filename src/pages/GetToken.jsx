@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { auth_url, clientID, clientSecret } from '../util';
 import axios from 'axios';
 import { SatsetContext } from './Context';
@@ -10,47 +10,23 @@ function GetToken() {
     const getToken = () => {
         setLoading(true)
         console.log("GET TOKEN", auth_url);
-
-        let formData = new FormData();
-
-        // Adding files to the formdata
-        formData.append("image", "newfiles");
-        formData.append("name", "Name");
-
-
-        let dataKirim = {
-            client_id: clientID,
-            client_secret: clientSecret
-        }
-
         axios({
-            // Endpoint to send files
             url: "/api/oauth2/v1/accesstoken?grant_type=client_credentials",
             method: "POST",
             headers: {
-                // Add any auth token here
-                //authorization: "your token comes here",
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-
-            // Attaching the form data
-            data: dataKirim,
         })
-            // Handle the response from backend here
             .then((res) => {
                 console.log("RESPONSE :", res.data);
                 console.log("RESPONSE ACCESS TOKEN:", res.data.access_token);
                 setTokenDt(res.data.access_token)
                 setLoading(false)
             })
-
-            // Catch errors if any
             .catch((err) => {
                 console.log("ERROR :", err);
                 setLoading(false)
             });
-
-
     }
     return (
         <div >
