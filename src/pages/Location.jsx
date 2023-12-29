@@ -18,20 +18,13 @@ function Location() {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + tokenDt
-
       },
-
-      // Attaching the form data
-
     })
-      // Handle the response from backend here
       .then((res) => {
         console.log("RESPONSE :", res.data);
         setResLocation(res.data)
         setLoading(false)
       })
-
-      // Catch errors if any
       .catch((err) => {
         console.log("ERROR :", err);
         setLoading(false)

@@ -1,20 +1,39 @@
 import React, { useContext, useState } from 'react'
 import { SatsetContext } from './Context';
 import axios from 'axios';
+import { OrganisationID } from '../util';
 
 function PostLocation() {
   const { tokenDt } = useContext(SatsetContext);
   const [Loading, setLoading] = useState(false)
   const [resLocation, setResLocation] = useState("")
+  const [kdLocation, setKdLocation] = useState("RJ002")
   const [nameLocation, setNameLocation] = useState("Ruang Klinik 1")
   const [descLocation, setDescLocation] = useState("Ruang 1, Poliklinik Anak, Lantai 1, Gedung Poliklinik")
   const [LocationID, setLocationID] = useState("")
+
+  const LocData = {
+    phoneNo: "024-76602154",
+    urlWeb: "http://rsudsulfat.demakkab.go.id",
+    address: "Jl. Raya Semarang Purwodadi KM. 21 No. 107 Karangawen Demak",
+    city: "Kab Demak",
+    postalCode: "59566",
+    kdProvinsi: "33",
+    kdKota: "3321",
+    kdkecamatan: "332102",
+    kdDesa: "3321022001",
+    NoRT: "1",
+    NoRW: "2",
+    longitude: -7.043732645807474,
+    latitude: 110.57466438554198,
+    altitude: 0,
+  }
 
   const DataLocation = {
     "resourceType": "Location",
     "identifier": [
       {
-        "system": "http://sys-ids.kemkes.go.id/location/100025702",
+        "system": "http://sys-ids.kemkes.go.id/location/" + OrganisationID,
         "value": "RJ002"
       }
     ],
@@ -25,22 +44,22 @@ function PostLocation() {
     "telecom": [
       {
         "system": "phone",
-        "value": "024-76602154",
+        "value": LocData.phoneNo,
         "use": "work"
       },
       {
         "system": "url",
-        "value": "http://rsudsulfat.demakkab.go.id",
+        "value": LocData.urlWeb,
         "use": "work"
       }
     ],
     "address": {
       "use": "work",
       "line": [
-        "Jl. Raya Semarang Purwodadi KM. 21 No. 107 Karangawen Demak"
+        LocData.address
       ],
-      "city": "Jawa Tengah",
-      "postalCode": "59566",
+      "city": LocData.city,
+      "postalCode": LocData.postalCode,
       "country": "ID",
       "extension": [
         {
@@ -48,27 +67,27 @@ function PostLocation() {
           "extension": [
             {
               "url": "province",
-              "valueCode": "33"
+              "valueCode": LocData.kdProvinsi
             },
             {
               "url": "city",
-              "valueCode": "3321"
+              "valueCode": LocData.kdKota
             },
             {
               "url": "district",
-              "valueCode": "332102"
+              "valueCode": LocData.kdkecamatan
             },
             {
               "url": "village",
-              "valueCode": "3321022001"
+              "valueCode": LocData.kdDesa
             },
             {
               "url": "rt",
-              "valueCode": "1"
+              "valueCode": LocData.NoRT
             },
             {
               "url": "rw",
-              "valueCode": "2"
+              "valueCode": LocData.NoRW
             }
           ]
         }
@@ -84,12 +103,12 @@ function PostLocation() {
       ]
     },
     "position": {
-      "longitude": -7.043732645807474,
-      "latitude": 110.57466438554198,
-      "altitude": 0
+      "longitude": LocData.longitude,
+      "latitude": LocData.latitude,
+      "altitude": LocData.altitude
     },
     "managingOrganization": {
-      "reference": "Organization/100025702"
+      "reference": "Organization/" + OrganisationID
     }
   }
 
@@ -97,7 +116,7 @@ function PostLocation() {
 
   const getLocation = () => {
     setLoading(true)
-    console.log("POST Location", LocationID);
+    console.log("POST Location");
 
     axios({
       url: "/api/fhir-r4/v1/Location",
@@ -105,21 +124,14 @@ function PostLocation() {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + tokenDt
-
       },
-
-      // Attaching the form data
       data: DataLocation,
-
     })
-      // Handle the response from backend here
       .then((res) => {
         console.log("RESPONSE :", res.data);
         setResLocation(res.data)
         setLoading(false)
       })
-
-      // Catch errors if any
       .catch((err) => {
         console.log("ERROR :", err);
         setLoading(false)
@@ -132,6 +144,16 @@ function PostLocation() {
         POST Location
       </div>
       <div className="m-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+          KODE LOCATION :
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username"
+          type="text"
+          value={kdLocation}
+          onChange={(e) => setKdLocation(e.target.value)}
+        />
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
           NAMA LOCATION :
         </label>

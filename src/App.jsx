@@ -13,7 +13,7 @@ function App() {
       <h1 className="text-3xl font-bold underline border-2">
         Coba Satset 2023
       </h1>
-      <Parameter />
+      {/* <Parameter /> */}
       <GetToken />
       <GetIHS />
       <Location />
