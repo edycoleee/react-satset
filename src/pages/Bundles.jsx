@@ -292,7 +292,9 @@ function Bundles() {
           .then((res) => {
             console.log("RESPONSE :", res.data);
             setResBundle(res.data)
-            responseAll.push(res.data)
+            responseAll.push({
+              ...res.data
+            });
             setLoading(false)
           })
           .catch((err) => {
