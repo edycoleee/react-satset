@@ -1,19 +1,22 @@
 import { useContext, useState } from 'react'
-import { OrganisationID, clientID, clientSecret } from '../util';
+import { clientID, clientSecret } from '../util';
 import axios from 'axios';
 import { SatsetContext } from './Context';
 
 function GetToken() {
-    const { tokenDt, setTokenDt } = useContext(SatsetContext);
+    const { tokenDt, setTokenDt, OrgId, setOrgId } = useContext(SatsetContext);
     const [Loading, setLoading] = useState(false)
+
+    const [CliId, setCliId] = useState(clientID)
+    const [CliSec, setCliSec] = useState(clientSecret)
 
     const getToken = () => {
         setLoading(true)
         console.log("GET TOKEN");
 
         let dataKirim = {
-            client_id: clientID,
-            client_secret: clientSecret
+            client_id: CliId,
+            client_secret: CliSec
         }
 
         axios({
@@ -49,8 +52,9 @@ function GetToken() {
                         className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="username"
                         type="text"
-                        value={OrganisationID}
-                        disabled />
+                        value={OrgId}
+                        onChange={(e) => setOrgId(e.target.value)}
+                    />
                 </div>
                 <div className="m-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
@@ -60,8 +64,9 @@ function GetToken() {
                         className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="username"
                         type="text"
-                        value={clientID}
-                        disabled />
+                        value={CliId}
+                        onChange={(e) => setCliId(e.target.value)}
+                    />
                 </div>
                 <div className="m-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
@@ -71,8 +76,9 @@ function GetToken() {
                         className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="username"
                         type="text"
-                        value={clientSecret}
-                        disabled />
+                        value={CliSec}
+                        onChange={(e) => setCliSec(e.target.value)}
+                    />
                 </div>
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled'
                     onClick={() => getToken()}

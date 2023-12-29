@@ -4,6 +4,8 @@ CARA BRIDGING SATU SEHAT
 
 ![Screenshot](satset2.jpg)
 
+![Screenshot](satset3.jpg)
+
 referensi :
 https://satusehat.kemkes.go.id/platform/docs/id/playbook/
 
@@ -453,19 +455,7 @@ client_secret: <client-secret>
   }
 ```
 
-7. POST ECOUNTER
-
-```
-
-```
-
-8. POST CONDITION
-
-```
-
-```
-
-9. POST OBSERVATION
+7. POST BUNDLE FROM EXCEL
 
 ```
 

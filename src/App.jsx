@@ -1,4 +1,5 @@
 import Bundle from "./pages/Bundle"
+import Bundles from "./pages/Bundles"
 import GetIHS from "./pages/GetIHS"
 import GetPraktisioner from "./pages/GetPractioner"
 import GetToken from "./pages/GetToken"
@@ -19,6 +20,7 @@ function App() {
       <Location />
       <PostLocation />
       <Bundle />
+      <Bundles />
     </>
   )
 }
