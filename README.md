@@ -1,8 +1,7 @@
 CARA BRIDGING SATU SEHAT
+![Screenshot](satset1.jpg)
 
-https://drive.google.com/file/d/1QGd-3OHB95zmbV3GDWxg6p5WhqaEFdYI/view?usp=sharing
-
-https://drive.google.com/file/d/1CGytKepLW7-8Qs6JnHWalKTxR2tGL2aN/view?usp=sharing
+![Screenshot](satset2.jpg)
 
 referensi :
 https://satusehat.kemkes.go.id/platform/docs/id/playbook/
