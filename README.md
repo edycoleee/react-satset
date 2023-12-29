@@ -1,5 +1,8 @@
 CARA BRIDGING SATU SEHAT
 
+Menjalankan dengan stackblitz
+https://stackblitz.com/github/edycoleee/react-satset
+
 ![Screenshot](satset1.jpg)
 
 ![Screenshot](satset2.jpg)
@@ -23,7 +26,9 @@ Consent URL
 https://api-satusehat.dto.kemkes.go.id/consent/v1
 
 WAJIB PUNYA
+
 client_id: <client-id>
+
 client_secret: <client-secret>
 
 1.  GET TOKEN
