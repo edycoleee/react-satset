@@ -22,6 +22,7 @@ client_secret: <client-secret>
 
 1.  GET TOKEN
 
+```
     const dataKirim = {
     client_id: clientID,
     client_secret: clientSecret
@@ -34,5 +35,6 @@ client_secret: <client-secret>
     },
     data: dataKirim,
     })
+```
 
 2.
