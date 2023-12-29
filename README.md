@@ -1,5 +1,9 @@
 CARA BRIDGING SATU SEHAT
 
+https://drive.google.com/file/d/1QGd-3OHB95zmbV3GDWxg6p5WhqaEFdYI/view?usp=sharing
+
+https://drive.google.com/file/d/1CGytKepLW7-8Qs6JnHWalKTxR2tGL2aN/view?usp=sharing
+
 referensi :
 https://satusehat.kemkes.go.id/platform/docs/id/playbook/
 
@@ -223,7 +227,6 @@ client_secret: <client-secret>
     PractiosionerDisplay: "Dokter Spesialis Anak",
     LocationID: "ecff1c64-3f62-4469-b577-ea38f263b276",
     LocationDisplay: "Ruang 1, Poliklinik Anak, Lantai 1, Gedung Poliklinik",
-    OrganisationID: "100025702"
   })
 
   const handleChange = (e) => {
@@ -310,11 +313,11 @@ client_secret: <client-secret>
             }
           ],
           "serviceProvider": {
-            "reference": "Organization/" + dtSend.OrganisationID
+            "reference": "Organization/" + OrganisationID
           },
           "identifier": [
             {
-              "system": "http://sys-ids.kemkes.go.id/encounter/" + dtSend.OrganisationID,
+              "system": "http://sys-ids.kemkes.go.id/encounter/" + OrganisationID,
               "value": dtSend.NoRegister
             }
           ]
@@ -441,9 +444,11 @@ client_secret: <client-secret>
       .then((res) => {
         console.log("RESPONSE :", res.data);
         setResBundle(res.data)
+        setLoading(false)
       })
       .catch((err) => {
         console.log("ERROR :", err);
+        setLoading(false)
       });
   }
 ```
