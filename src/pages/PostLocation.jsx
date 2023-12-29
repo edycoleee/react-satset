@@ -34,7 +34,7 @@ function PostLocation() {
     "identifier": [
       {
         "system": "http://sys-ids.kemkes.go.id/location/" + OrganisationID,
-        "value": "RJ002"
+        "value": kdLocation
       }
     ],
     "status": "active",
