@@ -36,6 +36,71 @@ client_secret: <client-secret>
             },
             data: dataKirim,
         })
+            .then((res) => {
+                console.log("RESPONSE :", res.data);
+                console.log("RESPONSE ACCESS TOKEN:", res.data.access_token);
+                setTokenDt(res.data.access_token)
+                setLoading(false)
+            })
 ```
 
-2.
+2. GET IHS NUMBER
+
+```
+        axios({
+            url: "/api/fhir-r4/v1/Patient?identifier=https://fhir.kemkes.go.id/id/nik|" + nik,
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + tokenDt
+            },
+        })
+```
+
+3. GET LOCATION
+
+```
+
+```
+
+4. POST LOCATION
+
+```
+
+```
+
+5. GET PRACTIOSIONER
+
+```
+
+```
+
+6. POST PRACTISIONER
+
+```
+
+```
+
+7. POST BUNDLE ENCOUNTER CONDITION OBSERVATION
+
+```
+
+```
+
+8. POST ECOUNTER
+
+```
+
+```
+
+9. POST CONDITION
+
+```
+
+```
+
+10. POST OBSERVATION
+
+```
+
+```

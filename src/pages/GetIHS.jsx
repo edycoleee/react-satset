@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react'
-import { base_url } from '../util';
+import { useContext, useState } from 'react'
 import { SatsetContext } from './Context';
 import axios from 'axios';
 
@@ -9,36 +8,24 @@ function GetIHS() {
     const [nik, setNik] = useState("3374060709780006")
     const [numberIHS, setNumberIHS] = useState("")
 
-
-
     const getPatient = () => {
         setLoading(true)
         console.log("GET IHS", nik);
-        // Endpoint to send files P01808167023
 
         axios({
-            // Endpoint to send files
             url: "/api/fhir-r4/v1/Patient?identifier=https://fhir.kemkes.go.id/id/nik|" + nik,
             method: "GET",
             headers: {
-                // Add any auth token here
-                //authorization: "your token comes here",
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + tokenDt
-
             },
-
-            // Attaching the form data
-
         })
-            // Handle the response from backend here
             .then((res) => {
                 console.log("RESPONSE :", res.data);
                 setNumberIHS(res.data)
                 setLoading(false)
             })
 
-            // Catch errors if any
             .catch((err) => {
                 console.log("ERROR :", err);
                 setLoading(false)
