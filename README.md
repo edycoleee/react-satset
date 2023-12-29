@@ -73,27 +73,28 @@ client_secret: <client-secret>
 
 4. POST LOCATION
    > Parameter Dasar
-   > OrganisationID: "100025702"
 
-phoneNo: "024-76602154",
-urlWeb : "http://rsudsulfat.demakkab.go.id"
-address : "Jl. Raya Semarang Purwodadi KM. 21 No. 107 Karangawen Demak"
-city : "Kab Demak"
-postalCode: "59566"
-kdProvinsi : "33"
-kdKota : "3321"
-kdkecamatan : "332102"
-kdDesa : "3321022001"
-NoRT : "1"
-NoRW : "2"
-longitude : -7.043732645807474,
-latitude : 110.57466438554198,
-altitude : 0
+-OrganisationID: "100025702"
+-phoneNo: "024-76602154",
+-urlWeb : "http://rsudsulfat.demakkab.go.id"
+-address : "Jl. Raya Semarang Purwodadi KM. 21 No. 107 Karangawen Demak"
+-city : "Kab Demak"
+-postalCode: "59566"
+-kdProvinsi : "33"
+-kdKota : "3321"
+-kdkecamatan : "332102"
+-kdDesa : "3321022001"
+-NoRT : "1"
+-NoRW : "2"
+-longitude : -7.043732645807474,
+-latitude : 110.57466438554198,
+-altitude : 0
 
 > Parameter Location
-> KodePoli : "RJ002"
-> nameLocation : "Ruang Klinik 1"
-> descLocation : "Ruang 1, Poliklinik Anak, Lantai 1, Gedung Poliklinik"
+
+-KodePoli : "RJ002"
+-nameLocation : "Ruang Klinik 1"
+-descLocation : "Ruang 1, Poliklinik Anak, Lantai 1, Gedung Poliklinik"
 
 ```
   const LocData = {
