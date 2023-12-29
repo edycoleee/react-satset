@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { SatsetContext } from './Context';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import { OrganisationID } from '../util';
 
 function Bundle() {
   const { tokenDt } = useContext(SatsetContext);
@@ -19,7 +20,6 @@ function Bundle() {
     PractiosionerDisplay: "Dokter Spesialis Anak",
     LocationID: "ecff1c64-3f62-4469-b577-ea38f263b276",
     LocationDisplay: "Ruang 1, Poliklinik Anak, Lantai 1, Gedung Poliklinik",
-    OrganisationID: "100025702"
   })
 
   const handleChange = (e) => {
@@ -106,11 +106,11 @@ function Bundle() {
             }
           ],
           "serviceProvider": {
-            "reference": "Organization/" + dtSend.OrganisationID
+            "reference": "Organization/" + OrganisationID
           },
           "identifier": [
             {
-              "system": "http://sys-ids.kemkes.go.id/encounter/" + dtSend.OrganisationID,
+              "system": "http://sys-ids.kemkes.go.id/encounter/" + OrganisationID,
               "value": dtSend.NoRegister
             }
           ]
@@ -211,18 +211,6 @@ function Bundle() {
             "system": "http://unitsofmeasure.org",
             "code": "Cel"
           },
-          // "interpretation": [
-          //   {
-          //     "coding": [
-          //       {
-          //         "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
-          //         "code": "H",
-          //         "display": "High"
-          //       }
-          //     ],
-          //     "text": "Di atas nilai referensi"
-          //   }
-          // ]
         },
         "request": {
           "method": "POST",
@@ -243,33 +231,71 @@ function Bundle() {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + tokenDt
-
       },
-
-      // Attaching the form data
       data: DATABUNDLE,
-
     })
-      // Handle the response from backend here
       .then((res) => {
         console.log("RESPONSE :", res.data);
         setResBundle(res.data)
         setLoading(false)
       })
-
-      // Catch errors if any
       .catch((err) => {
         console.log("ERROR :", err);
         setLoading(false)
       });
-
   }
-  //bf060ae3-1d58-4994-885a-3eba3f4ca118
 
   return (
     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 m-2">
       <div className="font-bold text-xl mb-2">
         POST BUNDLE
+      </div>
+      <div className="m-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="PractisionerIHS">
+          PractisionerIHS :
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="PractisionerIHS"
+          type="text"
+          name="PractisionerIHS"
+          value={dtSend.PractisionerIHS}
+          onChange={handleChange}
+        />
+
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="PractiosionerDisplay">
+          PractiosionerDisplay :
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="PractiosionerDisplay"
+          type="text"
+          name="PractiosionerDisplay"
+          value={dtSend.PractiosionerDisplay}
+          onChange={handleChange}
+        />
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="LocationID">
+          LocationID :
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="LocationID"
+          type="text"
+          name="LocationID"
+          value={dtSend.LocationID}
+          onChange={handleChange}
+        />
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="LocationDisplay">
+          LocationDisplay :
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="LocationDisplay"
+          type="text"
+          name="LocationDisplay"
+          value={dtSend.LocationDisplay}
+          onChange={handleChange}
+        />
       </div>
       <div className="m-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="NamaPasien">
