@@ -23,18 +23,19 @@ client_secret: <client-secret>
 1.  GET TOKEN
 
 ```
-    const dataKirim = {
-    client_id: clientID,
-    client_secret: clientSecret
-    }
-    axios({
-    url: "/api/oauth2/v1/accesstoken?grant_type=client_credentials",
-    method: "POST",
-    headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    data: dataKirim,
-    })
+        let dataKirim = {
+            client_id: clientID,
+            client_secret: clientSecret
+        }
+
+        axios({
+            url: "/api/oauth2/v1/accesstoken?grant_type=client_credentials",
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: dataKirim,
+        })
 ```
 
 2.
