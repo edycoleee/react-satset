@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { SatsetContext } from './Context';
 import axios from 'axios';
-import { OrganisationID } from '../util';
+
 
 function PostLocation() {
-  const { tokenDt } = useContext(SatsetContext);
+  const { tokenDt, OrgId } = useContext(SatsetContext);
   const [Loading, setLoading] = useState(false)
   const [resLocation, setResLocation] = useState("")
   const [kdLocation, setKdLocation] = useState("RJ002")
@@ -33,7 +33,7 @@ function PostLocation() {
     "resourceType": "Location",
     "identifier": [
       {
-        "system": "http://sys-ids.kemkes.go.id/location/" + OrganisationID,
+        "system": "http://sys-ids.kemkes.go.id/location/" + OrgId,
         "value": kdLocation
       }
     ],
@@ -108,7 +108,7 @@ function PostLocation() {
       "altitude": LocData.altitude
     },
     "managingOrganization": {
-      "reference": "Organization/" + OrganisationID
+      "reference": "Organization/" + OrgId
     }
   }
 
@@ -116,7 +116,7 @@ function PostLocation() {
 
   const getLocation = () => {
     setLoading(true)
-    console.log("POST Location");
+    console.log("POST Location",DataLocation);
 
     axios({
       url: "/api/fhir-r4/v1/Location",
