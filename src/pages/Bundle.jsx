@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { OrganisationID } from '../util';
 
 function Bundle() {
-  const { tokenDt } = useContext(SatsetContext);
+  const { tokenDt, OrgId } = useContext(SatsetContext);
   const [Loading, setLoading] = useState(false)
   const [resBundle, setResBundle] = useState("")
   const [dtSend, setDtSend] = useState({
@@ -106,11 +106,11 @@ function Bundle() {
             }
           ],
           "serviceProvider": {
-            "reference": "Organization/" + OrganisationID
+            "reference": "Organization/" + OrgId
           },
           "identifier": [
             {
-              "system": "http://sys-ids.kemkes.go.id/encounter/" + OrganisationID,
+              "system": "http://sys-ids.kemkes.go.id/encounter/" + OrgId,
               "value": dtSend.NoRegister
             }
           ]

@@ -21,7 +21,7 @@ function PostLocation() {
     kdProvinsi: "33",
     kdKota: "3321",
     kdkecamatan: "332102",
-    kdDesa: "3321022001",
+    kdDesa: "3321022010",
     NoRT: "1",
     NoRW: "2",
     longitude: -7.043732645807474,
