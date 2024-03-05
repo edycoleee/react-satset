@@ -465,3 +465,26 @@ client_secret: <client-secret>
 ```
 
 ```
+
+8. Integrasi dengan firebase untuk hosting
+a. Open firebase console
+https://console.firebase.google.com
+b. Create project
+c. Build Hosting
+
+```
+Jalankan di terminal 
+npm install -g firebase-tools
+firebase login
+firebase init 
+//>> hosting non github >>use existing project >> satset1 
+// pakai vite maka folder hosting build didalam dist
+// public directory >> dist 
+// /index.html >> y
+// github >> N
+
+npm run build
+
+firebase deploy --only hosting
+firebase deploy
+```
